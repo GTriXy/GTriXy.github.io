@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+const {
+  title = 'GTriXy',
+  description = 'Terminal-style notes, projects, and thoughts.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="shell">
+      <div class="shell-bar" aria-label="Terminal window">
+        <span class="dot red"></span>
+        <span class="dot amber"></span>
+        <span class="dot green"></span>
+        <span class="title">gtrixy@github-pages:~</span>
+      </div>
+      <div class="shell-body">
+        <slot />
+        <footer class="footer">
+          <span class="prompt">gtrixy@web</span>:<span class="muted">~</span>$ echo "built with Astro"
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

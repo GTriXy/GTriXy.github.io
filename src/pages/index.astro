@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type Post = {
+  url: string;
+  frontmatter: {
+    title: string;
+    description: string;
+    date: string;
+    tags?: string[];
+  };
+};
+
+const postModules = import.meta.glob<Post>('./posts/*.md');
+const posts = await Promise.all(Object.values(postModules).map((loadPost) => loadPost()));
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf(),
+);
+---
+
+<BaseLayout>
+  <p>
+    <span class="prompt">gtrixy@web</span>:<span class="muted">~</span>$
+    <span class="command">whoami</span>
+  </p>
+
+  <h1>GTriXy<span class="cursor"></span></h1>
+  <p class="muted">Personal blog / notes / projects</p>
+
+  <nav class="nav" aria-label="Primary">
+    <a href="#about">./about</a>
+    <a href="#posts">./posts</a>
+    <a href="#projects">./projects</a>
+    <a href="https://github.com/GTriXy">github</a>
+  </nav>
+
+  <section class="grid">
+    <div id="about" class="block">
+      <h2>$ cat about.txt</h2>
+      <p>
+        这里是 GTriXy 的个人空间。用来放一些折腾记录、技术笔记、项目碎片，以及偶尔冒出来的想法。
+      </p>
+      <p class="muted">Edit this text in src/pages/index.astro</p>
+    </div>
+
+    <div id="projects" class="block">
+      <h2>$ ls projects</h2>
+      <p><span class="prompt">></span> personal-blog</p>
+      <p><span class="prompt">></span> notes-lab</p>
+      <p><span class="prompt">></span> experiments</p>
+    </div>
+  </section>
+
+  <section id="posts" style="margin-top: 34px;">
+    <h2>$ ls posts</h2>
+    <div class="post-list">
+      {
+        sortedPosts.map((post) => (
+          <a class="post-link" href={post.url}>
+            <strong>{post.frontmatter.title}</strong>
+            <span class="muted">
+              {post.frontmatter.date} / {post.frontmatter.description}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
