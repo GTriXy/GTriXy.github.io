@@ -2,8 +2,8 @@
 import '../styles/global.css';
 
 const {
-  title = 'GTriXy Tactical Log',
-  description = 'Tactical terminal-style notes, projects, and field logs.',
+  title = 'GTriXy EVA Terminal',
+  description = 'A flat terminal-style personal archive inspired by secure command systems.',
 } = Astro.props;
 ---
 
@@ -13,24 +13,10 @@ const {
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/gdi-mark.png" type="image/png" />
     <title>{title}</title>
   </head>
   <body>
-    <main class="shell">
-      <div class="shell-bar" aria-label="Tactical terminal window">
-        <span class="dot red"></span>
-        <span class="dot amber"></span>
-        <span class="dot green"></span>
-        <span class="title">GTX-COMMAND // SECURE FIELD TERMINAL // NODE: GITHUB-PAGES</span>
-        <span class="bar-code">CH-07</span>
-      </div>
-      <div class="shell-body">
-        <slot />
-        <footer class="footer">
-          <span class="prompt">GTX-CMD</span><span class="muted"> / END-OF-TRANSMISSION</span>
-        </footer>
-      </div>
-    </main>
+    <slot />
   </body>
 </html>

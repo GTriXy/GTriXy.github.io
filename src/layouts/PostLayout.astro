@@ -2,21 +2,23 @@
 import BaseLayout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
-const pageTitle = `${frontmatter.title} | GTriXy`;
+const pageTitle = frontmatter.title + ' | GTriXy EVA Terminal';
 ---
 
 <BaseLayout title={pageTitle} description={frontmatter.description}>
-  <article class="article">
-    <p><a href="/">cd ..</a></p>
-    <p>
-      <span class="prompt">gtrixy@web</span>:<span class="muted">~/posts</span>$
-      <span class="command">cat {Astro.url.pathname.split('/').filter(Boolean).at(-1)}.md</span>
-    </p>
-    <h1>{frontmatter.title}</h1>
-    <p class="muted">
-      {frontmatter.date}
-      {frontmatter.tags?.length ? ` / ${frontmatter.tags.join(', ')}` : ''}
-    </p>
-    <slot />
-  </article>
+  <main class="article-shell">
+    <header class="article-top">
+      <a href="/">GDI-EVA&gt; return --home</a>
+      <span class="dim">ARCHIVE / READ-ONLY</span>
+    </header>
+    <article class="article">
+      <p class="prompt">GDI-EVA&gt; open file</p>
+      <h1>{frontmatter.title}</h1>
+      <p class="article-meta">
+        {frontmatter.date}
+        {frontmatter.tags?.length ? ' / ' + frontmatter.tags.join(', ') : ''}
+      </p>
+      <slot />
+    </article>
+  </main>
 </BaseLayout>

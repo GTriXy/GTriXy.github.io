@@ -19,65 +19,400 @@ const sortedPosts = posts.sort(
 ---
 
 <BaseLayout>
-  <section class="hud">
-    <div>
-      <p class="kicker">SECURE ACCESS / PERSONAL ARCHIVE</p>
-      <h1>GTriXy<span class="cursor"></span></h1>
-      <p class="muted">Field notes, build logs, experiments, and after-action reports.</p>
-    </div>
-    <div class="status-grid" aria-label="System status">
-      <span>LINK <strong>ONLINE</strong></span>
-      <span>MODE <strong>READ-ONLY</strong></span>
-      <span>AUTH <strong>PUBLIC</strong></span>
-      <span>ZONE <strong>WEB</strong></span>
-    </div>
-  </section>
+  <main class="terminal-screen">
+    <header class="terminal-header" aria-label="System identity">
+      <div class="eva-id">
+        <img class="eva-logo" src="/eva-mark.png" alt="EVA establishing battlefield control" />
+        <small class="eva-version">EVA System Version 4.26.95 <span class="eva-hotfix">Hotfix</span> <span class="eva-hotfix-build">2030</span></small>
+      </div>
+      <div class="gdi-mark" aria-label="GDI High Command identifier">
+        <img src="/gdi-mark.png" alt="GDI" />
+        <small>GDI CLASSIFIED COMMAND</small>
+      </div>
+    </header>
 
-  <nav class="nav" aria-label="Primary">
-    <a href="#briefing">BRIEFING</a>
-    <a href="#logs">FIELD-LOGS</a>
-    <a href="#assets">ASSETS</a>
-    <a href="https://github.com/GTriXy">GITHUB</a>
-  </nav>
+    <section class="access-panel" aria-label="Terminal output">
+      <div class="system-lines" id="terminal-output">
+        <p class="persistent-line"><span class="dim">EVA TERMINAL</span> / <span id="terminal-time">SYNCING TIME</span></p>
+        <p class="spacer persistent-line"></p>
+        <p class="persistent-line">Type <button class="inline-command" type="button" data-command="help">help</button> to list available commands.</p>
+      </div>
 
-  <section class="grid">
-    <div id="briefing" class="block tactical-map">
-      <h2>&gt; OPEN BRIEFING</h2>
-      <p>
-        这里是 GTriXy 的个人指挥台。记录技术折腾、项目推进、问题复盘，以及一些值得留档的想法。
-      </p>
-      <dl class="intel-list">
-        <div><dt>CALLSIGN</dt><dd>GTriXy</dd></div>
-        <div><dt>CHANNEL</dt><dd>github-pages</dd></div>
-        <div><dt>OBJECTIVE</dt><dd>write, build, ship</dd></div>
-      </dl>
-    </div>
+      <form class="command-line" id="terminal-form" autocomplete="off">
+        <label for="terminal-input">GDI-EVA&gt;</label>
+        <input id="terminal-input" name="command" autofocus spellcheck="false" aria-label="Terminal command" />
+        <span class="input-cursor" aria-hidden="true"></span>
+        <span class="command-ghost" id="command-ghost" aria-hidden="true"></span>
+      </form>
+    </section>
 
-    <div id="assets" class="block">
-      <h2>&gt; LIST ACTIVE ASSETS</h2>
-      <div class="asset-row"><span>personal-blog</span><strong>ACTIVE</strong></div>
-      <div class="asset-row"><span>notes-lab</span><strong>STANDBY</strong></div>
-      <div class="asset-row"><span>experiments</span><strong>SCOUTING</strong></div>
-    </div>
-  </section>
+    <section class="hidden-index" aria-label="Content index">
+      <div id="post-index">
+        {
+          sortedPosts.map((post, index) => (
+            <a
+              data-post
+              data-title={post.frontmatter.title}
+              data-date={post.frontmatter.date}
+              data-description={post.frontmatter.description}
+              data-slug={post.url?.split('/').filter(Boolean).at(-1)}
+              href={post.url}
+            >
+              {String(index + 1).padStart(2, '0')} / {post.frontmatter.title}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </main>
 
-  <section id="logs" class="logs-panel">
-    <div class="section-head">
-      <h2>&gt; QUERY FIELD LOGS</h2>
-      <span class="muted">SORT: newest first</span>
-    </div>
-    <div class="post-list">
-      {
-        sortedPosts.map((post, index) => (
-          <a class="post-link" href={post.url}>
-            <span class="log-index">LOG-{String(index + 1).padStart(3, '0')}</span>
-            <strong>{post.frontmatter.title}</strong>
-            <span class="muted">
-              {post.frontmatter.date} / {post.frontmatter.description}
-            </span>
-          </a>
-        ))
+  <script>
+    // -nocheck
+    const output = document.querySelector('#terminal-output') as HTMLElement;
+    const form = document.querySelector('#terminal-form') as HTMLFormElement;
+    const input = document.querySelector('#terminal-input') as HTMLInputElement;
+    const commandGhost = document.querySelector('#command-ghost') as HTMLElement;
+    const commandButtons = document.querySelectorAll<HTMLButtonElement>('[data-command]');
+    const versionLine = document.querySelector('.eva-version') as HTMLElement;
+    const hotfixLabel = document.querySelector('.eva-hotfix') as HTMLElement;
+    const hotfixBuild = document.querySelector('.eva-hotfix-build') as HTMLElement;
+    const terminalTime = document.querySelector('#terminal-time') as HTMLElement;
+    const posts = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-post]')).map((node) => ({
+      title: node.dataset.title,
+      date: node.dataset.date,
+      description: node.dataset.description,
+      slug: node.dataset.slug,
+      url: node.getAttribute('href'),
+    }));
+
+    const helpLines = {
+      en: [
+        'help .......... list available commands',
+        'posts ......... list archive entries',
+        'open &lt;id&gt; ..... open entry, e.g. open hello-world',
+        'about ......... show archive briefing',
+        'projects ...... show project status',
+        'github ........ open GitHub profile',
+        'language &lt;id&gt; . switch help language: en, zh, ru',
+        'clear ......... clear terminal output',
+      ],
+      zh: [
+        'help .......... 显示命令列表',
+        'posts ......... 列出文章',
+        'open &lt;id&gt; ..... 打开文章，例如 open hello-world',
+        'about ......... 查看档案说明',
+        'projects ...... 查看项目状态',
+        'github ........ 打开 GitHub 主页',
+        'language &lt;id&gt; . 切换帮助语言：en, zh, ru',
+        'clear ......... 清空屏幕',
+      ],
+      ru: [
+        'help .......... показать список команд',
+        'posts ......... показать записи архива',
+        'open &lt;id&gt; ..... открыть запись, например open hello-world',
+        'about ......... показать сводку архива',
+        'projects ...... показать статус проектов',
+        'github ........ открыть профиль GitHub',
+        'language &lt;id&gt; . сменить язык справки: en, zh, ru',
+        'clear ......... очистить экран',
+      ],
+    };
+    let currentLanguage = 'en';
+    const aboutLines = {
+      en: [
+        'GTriXy EVA Terminal.',
+        'Access level: public. System mode: read-only.',
+      ],
+      zh: [
+        'GTriXy EVA Terminal。',
+        '访问等级：公开。系统模式：只读。',
+      ],
+      ru: [
+        'GTriXy EVA Terminal.',
+        'Уровень доступа: публичный. Режим системы: только чтение.',
+      ],
+    };
+    const projectLines = {
+      en: [
+        'personal-blog / RUNNING',
+        '<span class="dim">SERVER</span> / offline',
+        '<span class="redacted">■■■■■</span>project / PENDING DEPLOYMENT',
+      ],
+      zh: [
+        '个人博客 / 正在运行',
+        '<span class="dim">服务器</span> / 离线',
+        '<span class="redacted">■■■■■</span>项目 / 待部署',
+      ],
+      ru: [
+        'personal-blog / РАБОТАЕТ',
+        '<span class="dim">СЕРВЕР</span> / отключен',
+        '<span class="redacted">■■■■■</span>проект / ОЖИДАЕТ РАЗВЕРТЫВАНИЯ',
+      ],
+    };
+    const usageLines = {
+      language: 'language&gt; language &lt;id&gt; . switch help language: en, zh, ru',
+      open: 'open&gt; open &lt;id&gt; ..... open entry, e.g. open hello-world',
+    };
+    const commandNames = [
+      'about',
+      'clear',
+      'github',
+      'help',
+      'language',
+      'open',
+      'posts',
+      'projects',
+    ].sort((a, b) => a.localeCompare(b));
+    const commandArgs = {
+      language: ['en', 'ru', 'zh'],
+      open: posts.map((post) => post.slug).filter(Boolean).sort((a, b) => a.localeCompare(b)),
+    };
+    const commandHistory = [];
+    let historyIndex = 0;
+    let currentSuggestion = '';
+
+
+    const updateTerminalTime = () => {
+      if (!terminalTime) return;
+      terminalTime.textContent = new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }).format(new Date()).replace(',', '');
+    };
+
+    const getSuggestion = () => {
+      const rawValue = input.value;
+      const value = rawValue.toLowerCase();
+      if (!value) return '';
+      const endsWithSpace = /\s$/.test(rawValue);
+      const parts = value.trimStart().split(/\s+/);
+      const commandPart = parts[0] || '';
+
+      if (parts.length === 1 && !endsWithSpace) {
+        const commandMatch = commandNames.find((candidate) => candidate.startsWith(commandPart));
+        if (!commandMatch || commandMatch === commandPart) return '';
+        return commandMatch.slice(commandPart.length);
       }
-    </div>
-  </section>
+
+      if (!(commandPart in commandArgs)) return '';
+      const typedArg = endsWithSpace ? '' : (parts.at(-1) || '');
+      const argMatch = commandArgs[commandPart].find((candidate: string) => candidate.startsWith(typedArg));
+      if (!argMatch || argMatch === typedArg) return '';
+      return argMatch.slice(typedArg.length);
+    };
+
+    const updateCommandCursor = () => {
+      const length = Math.max(0, input.value.length);
+      input.style.setProperty('--command-width', length + 'ch');
+      currentSuggestion = getSuggestion();
+      commandGhost.textContent = currentSuggestion;
+    };
+
+    const acceptSuggestion = () => {
+      if (!currentSuggestion) return false;
+      input.value += currentSuggestion;
+      updateCommandCursor();
+      return true;
+    };
+
+    const fitVersionLine = () => {
+      if (!versionLine || !hotfixLabel || !hotfixBuild) return;
+      const applyWordSpacing = () => {
+        versionLine.style.wordSpacing = '0px';
+        const targetWidth = versionLine.clientWidth;
+        const naturalWidth = versionLine.scrollWidth;
+        const words = versionLine.textContent.trim().split(/\s+/).length;
+        const gaps = Math.max(1, words - 1);
+        const spacing = (targetWidth - naturalWidth) / gaps;
+        if (naturalWidth <= targetWidth && spacing >= 0 && spacing <= 18) {
+          versionLine.style.wordSpacing = spacing + 'px';
+          return true;
+        }
+        return naturalWidth <= targetWidth;
+      };
+
+      hotfixLabel.hidden = false;
+      hotfixBuild.hidden = false;
+      versionLine.style.fontSize = '';
+      if (applyWordSpacing()) return;
+
+      hotfixBuild.hidden = true;
+      if (applyWordSpacing()) return;
+
+      hotfixLabel.hidden = true;
+      applyWordSpacing();
+    };
+
+    const escapeHtml = (value: string) =>
+      value.replace(/[&<>'"]/g, (char: string) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;',
+      } as Record<string, string>)[char]);
+
+    const print = (lines = []) => {
+      const rows = [];
+      for (const line of lines) {
+        const row = document.createElement('p');
+        row.innerHTML = line;
+        output.append(row);
+        rows.push(row);
+      }
+      output.scrollTop = output.scrollHeight;
+      return rows;
+    };
+
+    const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const authorizeCommand = async () => {
+      print(['<span class="dim">AUTHORIZATION</span> / Awaiting command authorization...']);
+      await delay(1500);
+      print(['<span class="prompt">AUTHORIZATION</span> / Access granted.']);
+    };
+
+    const showHelp = () => print(helpLines[currentLanguage]);
+
+    const bindDynamicButtons = () => {
+      document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((button) => {
+        button.addEventListener('click', () => openPost(button.dataset.open));
+      });
+    };
+
+    const showPosts = () => {
+      if (!posts.length) {
+        print(['<span class="warn">NO LOGS FOUND</span>']);
+        return;
+      }
+      print(posts.map((post, index) => {
+        const id = String(index + 1).padStart(3, '0');
+        return '<span class="dim">LOG-' + id + '</span> ' + post.date + ' / <button class="inline-command" type="button" data-open="' + post.slug + '">' + escapeHtml(post.title) + '</button> / ' + escapeHtml(post.description);
+      }));
+      bindDynamicButtons();
+    };
+
+    const openPost = (slug: string) => {
+      const normalized = slug.trim().toLowerCase();
+      const post = posts.find((item) => item.slug === normalized || item.title.toLowerCase() === normalized);
+      if (!post) {
+        print(['<span class="warn">ACCESS DENIED</span> / 未找到档案: ' + escapeHtml(slug)]);
+        return;
+      }
+      window.location.href = post.url;
+    };
+
+    const runCommand = async (rawCommand: string) => {
+      const command = rawCommand.trim().toLowerCase();
+      if (!command) return;
+      print(['<span class="prompt">GDI-EVA&gt;</span> ' + escapeHtml(rawCommand)]);
+
+      const requestedLanguage = command.startsWith('language ') ? command.slice(9).trim() : '';
+      const isKnownLanguage = command.startsWith('language ') && requestedLanguage in helpLines;
+      const needsArgument = command === 'language' || command === 'open';
+      const isValidCommand =
+        command === 'help' ||
+        command === 'posts' ||
+        command === 'logs' ||
+        command === 'about' ||
+        command === 'projects' ||
+        command === 'github' ||
+        command === 'clear' ||
+        command.startsWith('open ') ||
+        isKnownLanguage;
+
+      if (needsArgument) {
+        print([usageLines[command]]);
+        return;
+      }
+
+      if (!isValidCommand) {
+        if (command.startsWith('language ')) {
+          print(['<span class="error-token">GDI-EVA</span>&gt; <span class="error-token">Error</span> : Unknown Language &gt; ' + escapeHtml(requestedLanguage)]);
+        } else {
+          print(['<span class="error-token">GDI-EVA</span>&gt; <span class="error-token">Error</span> : Unknown Command &gt; ' + escapeHtml(command)]);
+        }
+        return;
+      }
+
+      await authorizeCommand();
+
+      if (command === 'help') showHelp();
+      else if (command === 'posts' || command === 'logs') showPosts();
+      else if (command === 'about') print(aboutLines[currentLanguage]);
+      else if (command === 'projects') print(projectLines[currentLanguage]);
+      else if (isKnownLanguage) {
+        currentLanguage = requestedLanguage;
+        print(['<span class="prompt">LANGUAGE</span> / Language set to ' + requestedLanguage + '.']);
+      }
+      else if (command === 'github') window.location.href = 'https://github.com/GTriXy';
+      else if (command === 'clear') {
+        output.querySelectorAll('p:not(.persistent-line)').forEach((line) => line.remove());
+      }
+      else if (command.startsWith('open ')) openPost(command.slice(5));
+    };
+
+    commandButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        input.value = button.dataset.command || '';
+        updateCommandCursor();
+        input.focus();
+      });
+    });
+
+    input.addEventListener('input', () => {
+      historyIndex = commandHistory.length;
+      updateCommandCursor();
+    });
+
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' && acceptSuggestion()) {
+        event.preventDefault();
+        return;
+      }
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (!commandHistory.length) return;
+        historyIndex = Math.max(0, historyIndex - 1);
+        input.value = commandHistory[historyIndex] || '';
+        updateCommandCursor();
+        return;
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (!commandHistory.length) return;
+        historyIndex = Math.min(commandHistory.length, historyIndex + 1);
+        input.value = commandHistory[historyIndex] || '';
+        updateCommandCursor();
+      }
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const command = input.value;
+      if (command.trim()) {
+        commandHistory.push(command);
+        historyIndex = commandHistory.length;
+      }
+      input.value = '';
+      updateCommandCursor();
+      input.disabled = true;
+      await runCommand(command);
+      input.disabled = false;
+      input.focus();
+    });
+
+    updateCommandCursor();
+    updateTerminalTime();
+    setInterval(updateTerminalTime, 1000);
+    fitVersionLine();
+    window.addEventListener('resize', fitVersionLine);
+    window.addEventListener('click', () => input.focus());
+    input.focus();
+  </script>
 </BaseLayout>
