@@ -19,44 +19,58 @@ const sortedPosts = posts.sort(
 ---
 
 <BaseLayout>
-  <p>
-    <span class="prompt">gtrixy@web</span>:<span class="muted">~</span>$
-    <span class="command">whoami</span>
-  </p>
-
-  <h1>GTriXy<span class="cursor"></span></h1>
-  <p class="muted">Personal blog / notes / projects</p>
-
-  <nav class="nav" aria-label="Primary">
-    <a href="#about">./about</a>
-    <a href="#posts">./posts</a>
-    <a href="#projects">./projects</a>
-    <a href="https://github.com/GTriXy">github</a>
-  </nav>
-
-  <section class="grid">
-    <div id="about" class="block">
-      <h2>$ cat about.txt</h2>
-      <p>
-        这里是 GTriXy 的个人空间。用来放一些折腾记录、技术笔记、项目碎片，以及偶尔冒出来的想法。
-      </p>
-      <p class="muted">Edit this text in src/pages/index.astro</p>
+  <section class="hud">
+    <div>
+      <p class="kicker">SECURE ACCESS / PERSONAL ARCHIVE</p>
+      <h1>GTriXy<span class="cursor"></span></h1>
+      <p class="muted">Field notes, build logs, experiments, and after-action reports.</p>
     </div>
-
-    <div id="projects" class="block">
-      <h2>$ ls projects</h2>
-      <p><span class="prompt">></span> personal-blog</p>
-      <p><span class="prompt">></span> notes-lab</p>
-      <p><span class="prompt">></span> experiments</p>
+    <div class="status-grid" aria-label="System status">
+      <span>LINK <strong>ONLINE</strong></span>
+      <span>MODE <strong>READ-ONLY</strong></span>
+      <span>AUTH <strong>PUBLIC</strong></span>
+      <span>ZONE <strong>WEB</strong></span>
     </div>
   </section>
 
-  <section id="posts" style="margin-top: 34px;">
-    <h2>$ ls posts</h2>
+  <nav class="nav" aria-label="Primary">
+    <a href="#briefing">BRIEFING</a>
+    <a href="#logs">FIELD-LOGS</a>
+    <a href="#assets">ASSETS</a>
+    <a href="https://github.com/GTriXy">GITHUB</a>
+  </nav>
+
+  <section class="grid">
+    <div id="briefing" class="block tactical-map">
+      <h2>&gt; OPEN BRIEFING</h2>
+      <p>
+        这里是 GTriXy 的个人指挥台。记录技术折腾、项目推进、问题复盘，以及一些值得留档的想法。
+      </p>
+      <dl class="intel-list">
+        <div><dt>CALLSIGN</dt><dd>GTriXy</dd></div>
+        <div><dt>CHANNEL</dt><dd>github-pages</dd></div>
+        <div><dt>OBJECTIVE</dt><dd>write, build, ship</dd></div>
+      </dl>
+    </div>
+
+    <div id="assets" class="block">
+      <h2>&gt; LIST ACTIVE ASSETS</h2>
+      <div class="asset-row"><span>personal-blog</span><strong>ACTIVE</strong></div>
+      <div class="asset-row"><span>notes-lab</span><strong>STANDBY</strong></div>
+      <div class="asset-row"><span>experiments</span><strong>SCOUTING</strong></div>
+    </div>
+  </section>
+
+  <section id="logs" class="logs-panel">
+    <div class="section-head">
+      <h2>&gt; QUERY FIELD LOGS</h2>
+      <span class="muted">SORT: newest first</span>
+    </div>
     <div class="post-list">
       {
-        sortedPosts.map((post) => (
+        sortedPosts.map((post, index) => (
           <a class="post-link" href={post.url}>
+            <span class="log-index">LOG-{String(index + 1).padStart(3, '0')}</span>
             <strong>{post.frontmatter.title}</strong>
             <span class="muted">
               {post.frontmatter.date} / {post.frontmatter.description}
