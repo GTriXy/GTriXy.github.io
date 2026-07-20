@@ -93,6 +93,8 @@ const sortedPosts = posts.sort(
         'about ......... show archive briefing',
         'projects ...... show project status',
         'github ........ open GitHub profile',
+        'bilibili ...... open Bilibili profile',
+        'fastfetch ..... show terminal identity report',
         'language &lt;id&gt; . switch help language: en, zh, ru',
         'clear ......... clear terminal output',
       ],
@@ -103,6 +105,8 @@ const sortedPosts = posts.sort(
         'about ......... 查看档案说明',
         'projects ...... 查看项目状态',
         'github ........ 打开 GitHub 主页',
+        'bilibili ...... 打开 Bilibili 主页',
+        'fastfetch ..... 显示终端身份报告',
         'language &lt;id&gt; . 切换帮助语言：en, zh, ru',
         'clear ......... 清空屏幕',
       ],
@@ -113,6 +117,8 @@ const sortedPosts = posts.sort(
         'about ......... показать сводку архива',
         'projects ...... показать статус проектов',
         'github ........ открыть профиль GitHub',
+        'bilibili ...... открыть профиль Bilibili',
+        'fastfetch ..... показать отчет терминала',
         'language &lt;id&gt; . сменить язык справки: en, zh, ru',
         'clear ......... очистить экран',
       ],
@@ -149,14 +155,111 @@ const sortedPosts = posts.sort(
         '<span class="redacted">■■■■■</span>проект / ОЖИДАЕТ РАЗВЕРТЫВАНИЯ',
       ],
     };
+    const fastfetchArts = [{"cols": 50, "art": "                                                  \n           @@                                     \n           @@@@*                                  \n            @@@@@@:    @@@@@@@@@@@@@              \n             @@@@@@@@    @@@@@@@@@@@@@@@.         \n    %          .@@@@@@@@    @@@@@@@@@@@@@@@       \n     +@@@@     *@@@@@@@@@@@    -@@@@@@@@@@@@@     \n      .@@@@@@@     @@@@@@@@@@@        @@@@@@@@@   \n        *@@@@@@@@@@   =@@@@@@@@@:        @@@@@@@  \n          @@@@@@@@@@@@@.  @@@@@@@@@        @@@@@@ \n             #@@@@@@@@@@@@@@@@@@@@@@@@      @@@@@@\n  @@@@@@@@@@.       +@@@@@@@@@@@@@@@@@@@@    @@@@@\n    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+       @@@@\n         =@@@@@@@@@@@@@@@@@@@@@@@@@@          @@@@\n        %@@#   @@@@@@@@@@@@@@@@@@@@           @@@@\n         @@@@@    @@@@@@@@@@@@@@@@@@@@@-      @@@@\n         @@@@@@      @@@@@@@@@@@@@@@@@@@@@    @@@=\n          @@@@@         @@@@@@@@@@@@@@@@@@@  @@@@ \n           @@@@@          @@@@@@-        +  @@@@  \n            #@@@@@        :@@@@@@=        %@@@-   \n              @@@@@@       @@@@@@@@     @@@@@     \n                @@@@@@@        =@@@@  @@@@@       \n                   @@@@@@@@@@@@@  @@@             \n                        =@@@@@@@@@  @@@@@@        \n                                  @@.   @         "}, {"cols": 75, "art": "                                                                           \n               @@.                                                         \n                @@@@                                                       \n                 @@@@@@                                                    \n                 #@@@@@@@#            .+@@@@@@@@+.                         \n                  @@@@@@@@@@#     #@@@@@@@@@@@@@@@@@@@@@                   \n                   @@@@@@@@@@@@.     @@@@@@@@@@@@@@@@@@@@@@@               \n                     :@@@@@@@@@@@@     =@@@@@@@@@@@@@@@@@@@@@@@            \n       @@             *@@@@@@@@@@@@@%     @@@@@@@@@@@@@@@@@@@@@@@.         \n        @@@@@+        #@@@@@@@@@@@@@@@@*     #@@@@@@@@@@@@@@@@@@@@@.       \n         @@@@@@@@@        @@@@@@@@@@@@@@@@.           @@@@@@@@@@@@@@@      \n          @@@@@@@@@@@@*      +@@@@@@@@@@@@@@@             @@@@@@@@@@@@:    \n           =@@@@@@@@@@@@@@@.     @@@@@@@@@@@@@@@            .@@@@@@@@@@#   \n               @@@@@@@@@@@@@@@@:    @@@@@@@@@@@@@@=           +@@@@@@@@@+  \n              =@@@@@@@@@@@@@@@@@@@@@  @@@@@@@@@@@@@@@-          @@@@@@@@@  \n                  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          @@@@@@@@ \n :@@@@@#:               .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        @@@@@@@#\n   #@@@@@@@@@@@@@@@@#:         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@       -@@@@@@@\n     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          @@@@@@@\n       -@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             @@@@@@\n               +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@               @@@@@@\n            @#.       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@:                 @@@@@@\n             @@@@@@@@    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.             @@@@@@\n             @@@@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         @@@@@@\n             .@@@@@@@:        .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      @@@@@@ \n              @@@@@@@@           =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    @@@@@* \n               @@@@@@@@             @@@@@@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@  \n                @@@@@@@@              @@@@@@@@@@@@#          @@=  @@@@@@   \n                 @@@@@@@@              @@@@@@@@@@                @@@@@@    \n                  =@@@@@@@@            .@@@@@@@@@@             @@@@@@      \n                    @@@@@@@@@           @@@@@@@@@@@+         @@@@@@@       \n                      @@@@@@@@@          @@@@@@@@@@@@     .@@@@@@@         \n                        @@@@@@@@@@            -+@@@@@@   @@@@@@@           \n                           @@@@@@@@@@@@@          @@@@@   *@@              \n                              :@@@@@@@@@@@@@@@@@.   @@@@.     =            \n                                    =@@@@@@@@@@@@@   :@@@@@@@@.            \n                                                   .@@@@@+  @*             \n                                                    @       @              "}, {"cols": 100, "art": "                   :                                                                                \n                    @@                                                                              \n                     @@@@                                                                           \n                     @@@@@@#                                                                        \n                      @@@@@@@@.                                                                     \n                       @@@@@@@@@@.                        ...                                       \n                       @@@@@@@@@@@@*          =@@@@@@@@@@@@@@@@@@@@@@#.                             \n                        @@@@@@@@@@@@@@=       %@@@@@@@@@@@@@@@@@@@@@@@@@@@@-                        \n                         @@@@@@@@@@@@@@@@        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+                    \n                            @@@@@@@@@@@@@@@@       -@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*                 \n        =                     +@@@@@@@@@@@@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.              \n         @@@@:               @@@@@@@@@@@@@@@@@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*            \n          @@@@@@@-           *@@@@@@@@@@@@@@@@@@@@@@:      +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.          \n           @@@@@@@@@@%          .@@@@@@@@@@@@@@@@@@@@@@              +@@@@@@@@@@@@@@@@@@@@@         \n            @@@@@@@@@@@@@@=         *@@@@@@@@@@@@@@@@@@@@@                *@@@@@@@@@@@@@@@@@@       \n             *@@@@@@@@@@@@@@@@@        .@@@@@@@@@@@@@@@@@@@@#                .@@@@@@@@@@@@@@@@      \n              :@@@@@@@@@@@@@@@@@@@@=       *@@@@@@@@@@@@@@@@@@@=                #@@@@@@@@@@@@@@.    \n                   .@@@@@@@@@@@@@@@@@@@@.     .@@@@@@@@@@@@@@@@@@@                -@@@@@@@@@@@@@    \n                   .@@@@@@@@@@@@@@@@@@@@@@@@.     @@@@@@@@@@@@@@@@@@@               @@@@@@@@@@@@@   \n                   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@+.@@@@@@@@@@@@@@@@@@@@@+             .@@@@@@@@@@@@  \n                      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:            @@@@@@@@@@@- \n @@@#-                        #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.          @@@@@@@@@@@ \n   @@@@@@@@@@@@@@*.                  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         @@@@@@@@@@@\n    :@@@@@@@@@@@@@@@@@@@@@@@#:           %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          @@@@@@@@@@\n      +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            .@@@@@@@@@\n        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:               @@@@@@@@@\n             :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                  %@@@@@@@@\n                      *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                    :@@@@@@@@\n                *=          .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#                       @@@@@@@@\n                *@@@@@@@@#.    *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                     @@@@@@@@\n                 @@@@@@@@@@@      *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:               -@@@@@@@@\n                 @@@@@@@@@@@         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           %@@@@@@@+\n                  @@@@@@@@@@.           @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         @@@@@@@@ \n                  -@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%      =@@@@@@@  \n                   @@@@@@@@@@@                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    @@@@@@@%  \n                    @@@@@@@@@@                  #@@@@@@@@@@@@@@@@@@@@@@@@@@.=@@@@@@@@@   @@@@@@@@   \n                     @@@@@@@@@@:                   @@@@@@@@@@@@@@@@@%            :@@@   @@@@@@@@    \n                      @@@@@@@@@@:                  @@@@@@@@@@@@@:                @     @@@@@@@@     \n                       @@@@@@@@@@@                  @@@@@@@@@@@@@%                   -@@@@@@@#      \n                        .@@@@@@@@@@+                 @@@@@@@@@@@@@@                 @@@@@@@@        \n                          @@@@@@@@@@@                @@@@@@@@@@@@@@@              @@@@@@@@@         \n                            @@@@@@@@@@@-              @@@@@@@@@@@@@@@           @@@@@@@@@           \n                              @@@@@@@@@@@@             @@@@@@@@@@@@@@@#      @@@@@@@@@@             \n                                %@@@@@@@@@@@@@                  =@@@@@@@    #@@@@@@@+               \n                                   @@@@@@@@@@@@@@@%:              %@@@@@@    :@@@@                  \n                                      =@@@@@@@@@@@@@@@@@@@@@@@@.    @@@@@@.                         \n                                          #@@@@@@@@@@@@@@@@@@@@@@    -@@@@@      +@@                \n                                                =@@@@@@@@@@@@@@@@@@    @@@@@@@@@@@@                 \n                                                                      +@@@@@@@@:@@                  \n                                                                    @@@@.       @=                  \n                                                                     +@         *                   "}, {"cols": 125, "art": "                                                                                                                             \n                        :@@                                                                                                  \n                         +@@@+                                                                                               \n                          @@@@@@=                                                                                            \n                           @@@@@@@@.                                                                                         \n                           :@@@@@@@@@@                                                                                       \n                            @@@@@@@@@@@@:                                                                                    \n                             @@@@@@@@@@@@@@#               .+@@@@@@@@@@@@@@@@@@@@@@@#=                                       \n                             =@@@@@@@@@@@@@@@@:         =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+                                 \n                              %@@@@@@@@@@@@@@@@@@.        .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:                            \n                               +@@@@@@@@@@@@@@@@@@@%         =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#                         \n                                  %@@@@@@@@@@@@@@@@@@@%         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                      \n                                     @@@@@@@@@@@@@@@@@@@@:        +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*                   \n          .@@.                       .@@@@@@@@@@@@@@@@@@@@@@         @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#                 \n           .@@@@@@=                =@@@@@@@@@@@@@@@@@@@@@@@@@@@.        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.              \n             @@@@@@@@@*.             +@@@@@@@@@@@@@@@@@@@@@@@@@@@@         --*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             \n              @@@@@@@@@@@@@=            .@@@@@@@@@@@@@@@@@@@@@@@@@@@#                 :@@@@@@@@@@@@@@@@@@@@@@@@@@@           \n               @@@@@@@@@@@@@@@@#            %@@@@@@@@@@@@@@@@@@@@@@@@@@:                   =@@@@@@@@@@@@@@@@@@@@@@@          \n                @@@@@@@@@@@@@@@@@@@@-          :@@@@@@@@@@@@@@@@@@@@@@@@@@:                    *@@@@@@@@@@@@@@@@@@@@+        \n                 @@@@@@@@@@@@@@@@@@@@@@@-          @@@@@@@@@@@@@@@@@@@@@@@@@@                     @@@@@@@@@@@@@@@@@@@@       \n                   %@@@@@@@@@@@@@@@@@@@@@@@@@.        =@@@@@@@@@@@@@@@@@@@@@@@@*                    .@@@@@@@@@@@@@@@@@@      \n                        -@@@@@@@@@@@@@@@@@@@@@@@@#.       #@@@@@@@@@@@@@@@@@@@@@@@*                    %@@@@@@@@@@@@@@@@     \n                        =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+       @@@@@@@@@@@@@@@@@@@@@@@*                   @@@@@@@@@@@@@@@@    \n                        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*.   #@@@@@@@@@@@@@@@@@@@@@@@@:                 -@@@@@@@@@@@@@@@   \n                       :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                 @@@@@@@@@@@@@@+  \n                              +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#               @@@@@@@@@@@@@@: \n @@@@#-:                             =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=             @@@@@@@@@@@@@@ \n   @@@@@@@@@@@@@@%*                        .+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            @@@@@@@@@@@@@.\n     @@@@@@@@@@@@@@@@@@@@@@@@@@@+:.                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+           @@@@@@@@@@@@@\n      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+-     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:              @@@@@@@@@@@@\n        :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.                #@@@@@@@@@@@\n          +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                    @@@@@@@@@@@\n               :#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+                      %@@@@@@@@@@\n                        %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.                        =@@@@@@@@@@\n                               .+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                            @@@@@@@@@@\n                    %@@@@*.          @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=                             @@@@@@@@@@\n                    =@@@@@@@@@@@@@      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+.                        @@@@@@@@@@\n                     @@@@@@@@@@@@@=       -@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:                   -@@@@@@@@@@\n                     %@@@@@@@@@@@@@          :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=               #@@@@@@@@@.\n                      @@@@@@@@@@@@@             *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            @@@@@@@@@@ \n                      @@@@@@@@@@@@@-               @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          +@@@@@@@@@= \n                       @@@@@@@@@@@@@.                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        @@@@@@@@@@  \n                        @@@@@@@@@@@@@                    %@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     @@@@@@@@@@   \n                        -@@@@@@@@@@@@%                     .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+@@@@@@@@@@@@    @@@@@@@@@@    \n                         .@@@@@@@@@@@@@                        @@@@@@@@@@@@@@@@@@@@@@@@@+            .@@@@@   =@@@@@@@@@     \n                          =@@@@@@@@@@@@#                       .@@@@@@@@@@@@@@@@@@+.                 :@@-    @@@@@@@@@@.     \n                           .@@@@@@@@@@@@@                       @@@@@@@@@@@@@@@@#                    :      @@@@@@@@@@       \n                             @@@@@@@@@@@@@                       @@@@@@@@@@@@@@@@@                         @@@@@@@@@#        \n                              #@@@@@@@@@@@@@                     :@@@@@@@@@@@@@@@@@                      %@@@@@@@@@-         \n                                @@@@@@@@@@@@@@                    @@@@@@@@@@@@@@@@@@=                  @@@@@@@@@@@           \n                                 :@@@@@@@@@@@@@@                   @@@@@@@@@@@@@@@@@@@              .@@@@@@@@@@@             \n                                   -@@@@@@@@@@@@@@-                .@@@@@@@@@@@@@@@@@@@           =@@@@@@@@@@@.              \n                                     :@@@@@@@@@@@@@@@               @@@@@@@@@@@@@@@@@@@@.       @@@@@@@@@@@@.                \n                                        @@@@@@@@@@@@@@@@*                    -=+@@@@@@@@@.     @@@@@@@@@@@                   \n                                          -@@@@@@@@@@@@@@@@@%-                    %@@@@@@@%     =@@@@@@:                     \n                                             -@@@@@@@@@@@@@@@@@@@@@@@#=......       @@@@@@@@     *@@                         \n                                                 =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      @@@@@@@.           .                   \n                                                     .#@@@@@@@@@@@@@@@@@@@@@@@@@@@     @@@@@@@%     %@@@@                    \n                                                            =#@@@@@@@@@@@@@@@@@@@@@@     @@@@@@@@@@@@@@@                     \n                                                                                         @@@@@@@@@@@@@@                      \n                                                                                    #@@@@@@@@%.     @@                       \n                                                                                     -@@=           @-                       \n                                                                                       @@           :                        "}];
+
+    const getFastfetchHtml = () => {
+      const measureChWidth = () => {
+        const probe = document.createElement('span');
+        probe.textContent = '0'.repeat(50);
+        probe.className = 'fastfetch-art';
+        probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;';
+        output.append(probe);
+        const width = probe.getBoundingClientRect().width / 50;
+        probe.remove();
+        return width || 8;
+      };
+      const selectFastfetchArt = () => {
+        const chWidth = measureChWidth();
+        const outputWidth = output.clientWidth || window.innerWidth;
+        const isCompact = window.matchMedia('(max-width: 680px)').matches;
+        const infoReserve = isCompact ? 0 : Math.min(470, Math.max(340, outputWidth * 0.43));
+        const gapReserve = isCompact ? 0 : Math.min(42, Math.max(18, outputWidth * 0.04));
+        const artPixels = Math.max(0, outputWidth - infoReserve - gapReserve);
+        const targetCols = Math.floor((isCompact ? outputWidth : artPixels) / chWidth);
+        return fastfetchArts.reduce((best, art) => {
+          if (art.cols <= targetCols + 6) return art;
+          return best;
+        }, fastfetchArts[0]);
+      };
+      const selectedArt = selectFastfetchArt();
+      const fastfetchArt = selectedArt.art;
+      const countDays = (startDate: Date, endDate: Date) => Math.floor((endDate.getTime() - startDate.getTime()) / 86400000);
+      const getAge = () => {
+        const origin = new Date(1995, 3, 26);
+        const now = new Date();
+        let years = now.getFullYear() - origin.getFullYear();
+        const anniversary = new Date(now.getFullYear(), origin.getMonth(), origin.getDate());
+        if (now < anniversary) years -= 1;
+        const lastAnniversary = new Date(origin.getFullYear() + years, origin.getMonth(), origin.getDate());
+        const days = countDays(lastAnniversary, now);
+        return years + ' years ' + days + ' days';
+      };
+      const getBrowserName = () => {
+        const ua = navigator.userAgent;
+        if (/Edg\//.test(ua)) return 'Microsoft Edge';
+        if (/Firefox\//.test(ua)) return 'Firefox';
+        if (/OPR\//.test(ua) || /Opera\//.test(ua)) return 'Opera';
+        if (/Chrome\//.test(ua) || /Chromium\//.test(ua)) return 'Chromium';
+        if (/Safari\//.test(ua)) return 'Safari';
+        return 'Browser';
+      };
+      const getDeviceLabel = () => {
+        const ua = navigator.userAgent;
+        const mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+        const platformHint = (navigator as Navigator & { userAgentData?: { platform?: string } }).userAgentData?.platform;
+        const platform = platformHint || (/Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iOS' : /Windows/i.test(ua) ? 'Windows' : /Mac OS X/i.test(ua) ? 'macOS' : /Linux/i.test(ua) ? 'Linux' : 'Unknown platform');
+        const cores = navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' threads' : 'threads unknown';
+        return (mobile ? 'Mobile' : 'Desktop') + ' / ' + platform + ' / ' + cores;
+      };
+      const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+      const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType;
+      const pcLines = [
+        ['DEV', getDeviceLabel()],
+        ['CPU', navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' logical cores visible' : 'unavailable'],
+        ['MEM', memory ? memory + ' GiB visible' : 'unavailable'],
+        ['MON', screen.width + 'x' + screen.height + '@' + window.devicePixelRatio + 'x'],
+        ['WIN', window.innerWidth + 'x' + window.innerHeight + ' viewport'],
+        ['NET', connection ? connection : 'unavailable'],
+      ];
+      const topLines = [
+        ['OS', 'EVA TERMINAL'],
+        ['KER', 'EVA System 4.26.95 Hotfix 2030'],
+        ['AGE', getAge()],
+        ['USR', 'GTriXy@GDI CSFT Dead-6'],
+      ];
+      const wmLines = [
+        ['WEB', getBrowserName()],
+        ['SHE', 'GDI-EVA Terminal'],
+        ['TER', 'Astro Client Runtime'],
+      ];
+      const renderRow = ([key, value]: string[]) => '<span class="fastfetch-key">' + key + '</span><span class="fastfetch-value">' + escapeHtml(value) + '</span>';
+      const lineCount = fastfetchArt.split('\n').length;
+      return '<span class="fastfetch" data-lines="' + lineCount + '"><span class="fastfetch-art">' + escapeHtml(fastfetchArt) + '</span><span class="fastfetch-info"><span class="fastfetch-section">' + topLines.map(renderRow).join('') + '</span><span class="fastfetch-section">' + wmLines.map(renderRow).join('') + '</span><span class="fastfetch-section">' + pcLines.map(renderRow).join('') + '</span></span></span>';
+    };
+
+    const fitFastfetchOutput = (row: HTMLElement) => {
+      requestAnimationFrame(() => {
+        const block = row.querySelector<HTMLElement>('.fastfetch');
+        const art = row.querySelector<HTMLElement>('.fastfetch-art');
+        const info = row.querySelector<HTMLElement>('.fastfetch-info');
+        if (!block || !art || !info || window.matchMedia('(max-width: 680px)').matches) return;
+        const lines = Number(block.dataset.lines) || art.textContent.split('\n').length || 1;
+        const infoHeight = info.getBoundingClientRect().height;
+        const fontSize = Math.max(4.5, Math.min(13, infoHeight / (lines * 1.05)));
+        art.style.fontSize = fontSize + 'px';
+      });
+    };
+
     const usageLines = {
       language: 'language&gt; language &lt;id&gt; . switch help language: en, zh, ru',
       open: 'open&gt; open &lt;id&gt; ..... open entry, e.g. open hello-world',
     };
     const commandNames = [
       'about',
+      'bilibili',
       'clear',
       'github',
+      'fastfetch',
       'help',
       'language',
       'open',
@@ -322,6 +425,8 @@ const sortedPosts = posts.sort(
         command === 'about' ||
         command === 'projects' ||
         command === 'github' ||
+        command === 'bilibili' ||
+        command === 'fastfetch' ||
         command === 'clear' ||
         command.startsWith('open ') ||
         isKnownLanguage;
@@ -346,11 +451,16 @@ const sortedPosts = posts.sort(
       else if (command === 'posts' || command === 'logs') showPosts();
       else if (command === 'about') print(aboutLines[currentLanguage]);
       else if (command === 'projects') print(projectLines[currentLanguage]);
+      else if (command === 'fastfetch') {
+        const rows = print([getFastfetchHtml()]);
+        fitFastfetchOutput(rows[0]);
+      }
       else if (isKnownLanguage) {
         currentLanguage = requestedLanguage;
         print(['<span class="prompt">LANGUAGE</span> / Language set to ' + requestedLanguage + '.']);
       }
       else if (command === 'github') window.location.href = 'https://github.com/GTriXy';
+      else if (command === 'bilibili') window.location.href = 'https://space.bilibili.com/388115572';
       else if (command === 'clear') {
         output.querySelectorAll('p:not(.persistent-line)').forEach((line) => line.remove());
       }
