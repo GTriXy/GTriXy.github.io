@@ -342,11 +342,10 @@ pre {
     grid-template-columns: 1fr;
   }
 
-  .eva-id,
   .eva-hotfix[hidden],
-.eva-hotfix-build[hidden] {
-  display: none;
-}
+  .eva-hotfix-build[hidden] {
+    display: none;
+  }
 
 .gdi-mark {
     width: min(78vw, 330px);
@@ -354,6 +353,8 @@ pre {
   }
 
   .eva-id {
+    width: min(78vw, 330px);
+    min-width: 0;
     margin-top: 0;
   }
 
