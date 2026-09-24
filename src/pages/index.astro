@@ -11,8 +11,8 @@ type Post = {
   };
 };
 
-const postModules = import.meta.glob<Post>('./posts/*.md');
-const posts = await Promise.all(Object.values(postModules).map((loadPost) => loadPost()));
+const postModules = import.meta.glob<Post>('./posts/*.md', { eager: true });
+const posts = Object.values(postModules);
 const sortedPosts = posts.sort(
   (a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf(),
 );
