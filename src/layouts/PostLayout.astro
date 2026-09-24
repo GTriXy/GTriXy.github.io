@@ -6,19 +6,40 @@ const pageTitle = frontmatter.title + ' | GTriXy EVA Terminal';
 ---
 
 <BaseLayout title={pageTitle} description={frontmatter.description}>
-  <main class="article-shell">
-    <header class="article-top">
-      <a href="/">GDI-EVA&gt; return --home</a>
-      <span class="dim">ARCHIVE / READ-ONLY</span>
+  <main class="terminal-screen article-terminal-screen">
+    <header class="terminal-header" aria-label="System identity">
+      <div class="eva-id">
+        <img class="eva-logo" src="/eva-mark.png" alt="EVA establishing battlefield control" />
+        <small class="eva-version">EVA System Version 4.26.95 <span class="eva-hotfix">Hotfix</span> <span class="eva-hotfix-build">2030</span></small>
+      </div>
+      <div class="gdi-mark" aria-label="GDI High Command identifier">
+        <img src="/gdi-mark.png" alt="GDI" />
+        <small>GDI CLASSIFIED COMMAND</small>
+      </div>
     </header>
-    <article class="article">
-      <p class="prompt">GDI-EVA&gt; open file</p>
-      <h1>{frontmatter.title}</h1>
-      <p class="article-meta">
-        {frontmatter.date}
-        {frontmatter.tags?.length ? ' / ' + frontmatter.tags.join(', ') : ''}
-      </p>
-      <slot />
-    </article>
+
+    <section class="article-access-panel" aria-label="Archive output">
+      <div class="article-session">
+        <a href="/"><span class="prompt">GDI-EVA&gt;</span> return --home</a>
+        <span class="dim">ARCHIVE / READ-ONLY</span>
+      </div>
+
+      <article class="article">
+        <p class="article-command"><span class="prompt">GDI-EVA&gt;</span> archive --read</p>
+        <h1>{frontmatter.title}</h1>
+        <div class="article-meta" aria-label="Archive metadata">
+          <span><b>DATE</b>{frontmatter.date}</span>
+          <span><b>CLASS</b>{frontmatter.tags?.length ? frontmatter.tags.join(' / ') : 'UNCLASSIFIED'}</span>
+        </div>
+        <div class="article-body">
+          <slot />
+        </div>
+      </article>
+    </section>
+
+    <footer class="article-footer">
+      <a href="/">GDI-EVA&gt;</a>
+      <span class="dim">return --home</span>
+    </footer>
   </main>
 </BaseLayout>

@@ -6,22 +6,24 @@ date: "2026-07-19"
 tags: ["system", "deployment"]
 ---
 
-## 系统记录 / 001
+## DEPLOYMENT RECORD / 001
 
 > **EVA 已安装成功。**
 
-终端与档案系统现已完成部署。
+终端与档案系统已完成部署，当前运行状态正常。
 
-此处将用于保存系统日志、技术笔记与行动记录。界面保持克制，信息保持清晰：没有多余装饰，只有等待读取的内容。
+此处用于保存系统日志、技术笔记与行动记录。界面保持克制，信息保持清晰：没有多余装饰，只有等待读取的内容。
 
-### 新增记录
+### ARCHIVE PATH
 
-后续如需接入新的档案，只需在以下目录中新增 Markdown 文件：
+后续接入新档案时，在以下目录中新增 Markdown 文件：
 
 ```text
 src/pages/posts/
 ```
 
-`SYSTEM STATUS: ONLINE`  
-`COMMUNICATION LINK: STABLE`  
-`AWAITING NEXT COMMAND`
+### SYSTEM STATUS
+
+- `TERMINAL` — ONLINE
+- `COMMUNICATION LINK` — STABLE
+- `NEXT COMMAND` — STANDBY
